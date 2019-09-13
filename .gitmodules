@@ -1,0 +1,6 @@
+[submodule "combined/shared-modules"]
+	path = combined/shared-modules
+	url = https://github.com/flathub/shared-modules.git
+[submodule "split/shared-modules"]
+	path = split/shared-modules
+	url = https://github.com/flathub/shared-modules.git

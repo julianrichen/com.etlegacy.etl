@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+    <id>com.etlegacy.etl.data</id>
+    <extends>com.etlegacy.etl.desktop</extends>
+    <name>Enemy Territory Official Game Data</name>
+    <project_license>LicenseRef-proprietary</project_license>
+    <metadata_license>CC0-1.0</metadata_license>
+    <summary>Downloads official game data from Splash Damage Ltd.. Please note that by downloading this addon you agree to the included proprietary license.</summary>
+    <url type="homepage">https://www.splashdamage.com/games/wolfenstein-enemy-territory/</url>
+</component>

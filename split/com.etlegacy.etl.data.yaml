@@ -1,0 +1,49 @@
+build-extension: true
+
+id: com.etlegacy.etl.data
+branch: "18.08"
+
+runtime: com.etlegacy.etl
+runtime-version: stable
+sdk: org.freedesktop.Sdk//18.08
+
+separate-locales: false
+appstream-compose: false
+
+build-options:
+  prefix: /app/extensions/data
+
+modules:
+  - name: enemy-territory
+    buildsystem: simple
+    build-commands:
+      - install -d ${FLATPAK_DEST}/bin
+      - install apply_extra ${FLATPAK_DEST}/bin
+    sources:
+      - type: script
+        dest-filename: apply_extra
+        commands:
+          - mkdir -p enemy-territory
+          - unzip -o enemy-territory.zip
+          - chmod +x et*.run
+          - ./et*.run --noexec --nox11 --target enemy-territory/
+          - install -Dm644 enemy-territory/etmain/{pak0,pak1,pak2}.pk3 .
+          - rm -rf enemy-territory/
+          - rm enemy-territory.zip
+          - rm et260b.x86_keygen_V03.run
+          - rm "README FIRST ! IMPORTANT.txt"
+      - type: extra-data
+        url: https://cdn.splashdamage.com/downloads/games/wet/et260b.x86_full.zip
+        sha256: 2a8fef8e8558efffcad658bb9a8b12df8740418b3514142350eba3b7641eb3e0
+        size: 275647724
+        filename: enemy-territory.zip
+
+  - name: metadata
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo com.etlegacy.etl.data.metainfo.xml
+      - appstream-compose --basename=com.etlegacy.etl.data --prefix=${FLATPAK_DEST} --origin=flatpak com.etlegacy.etl.data
+    sources:
+      - type: file
+        path: com.etlegacy.etl.data.metainfo.xml
+
